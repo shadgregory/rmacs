@@ -4,7 +4,7 @@
 
 (require racket/set)
 (require racket/match)
-(require (except-in racket/string string-prefix?))
+(require racket/string)
 (require "../api.rkt")
 (require "../strings.rkt")
 
