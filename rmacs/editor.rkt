@@ -96,14 +96,13 @@
 
 (define (colorize! editor buf)
   (local-require "timing.rkt")
-  (when (time* (list 'colorizing (buffer-title buf)) (colorize-burst buf))
-    (set-editor-event! editor
-                       colorize!
-                       (handle-evt always-evt
-                                   (lambda (_)
-                                     (clear-editor-event! editor colorize!)
-                                     (colorize! editor buf)
-                                     #t)))))
+  (set-editor-event! editor
+                     colorize!
+                     (handle-evt always-evt
+                                 (lambda (_)
+                                   (clear-editor-event! editor colorize!)
+                                   (colorize! editor buf)
+                                   #t))))
 
 (define (configure-fresh-buffer! editor buffer)
   (buffer-apply-modeset! buffer (editor-default-modeset editor))
